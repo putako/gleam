@@ -1,14 +1,53 @@
 <header>
 	<h1>shut yo ass up, <%= current_player.email %></h1>
-	<h2>sit y'all monkey ass down. brought to you by Rail <%= Rails.version %></h2>
+	<h2>sit y'all monkey ass down. brought to you by Rails <%= Rails.version %></h2>
 </header>
-<section>
-	<p>that's what I thought.</p>
-	<%= link_to "now get the fuck outta here", destroy_player_session_path, method: :delete %>
-</section>
-<body class="container">
-	<p class="notice"><%= notice %></p>
-	<p class="alert"><%= alert %></p>
+<body>
+	<section class="search-form">
+		<p>that's what I thought.</p>
+		<%= link_to "now get the fuck outta here", destroy_player_session_path, method: :delete %>
 
-	<%= yield %>
+		<%= form_for :charactersheets, method: :get do |f| %>
+			<div class="input-group input-group-lg">
+				<%= label_tag :keywords, nil, class: "sr-only" %>
+				<%= text_field_tag :keywords, nil, placeholder: "player name or character name", class: "form-control, input-lg" %>
+				<span class="input-group-btn">
+					<%= submit_tag "Find Shit", class: "btn btn-primary btn-lg" %>
+				</span>
+			</div>
+		<% end %>
+	</section>
+	<section class="search-results">
+		<header>
+			<h1 class="h3">Aww shiiiiit</h1>
+		</header>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Player Name</th>
+					<th>Characther Name</th>
+					<th>Strength</th>
+					<th>Dexterity</th>
+					<th>Constitution</th>
+					<th>Intelligence</th>
+					<th>Wisdom</th>
+					<th>Charisma</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @charactersheets.each do |ch| %>
+					<tr>
+						<td><%= ch.player_name %></td>
+						<td><%= ch.character_name %></td>
+						<td><%= ch.ability_str %></td>
+						<td><%= ch.ability_dex %></td>
+						<td><%= ch.ability_con %></td>
+						<td><%= ch.ability_int %></td>
+						<td><%= ch.ability_wis %></td>
+						<td><%= ch.ability_cha %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</section>
 </body>
