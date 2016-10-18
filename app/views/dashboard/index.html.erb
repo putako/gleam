@@ -1,0 +1,14 @@
+<header>
+	<h1>shut yo ass up, <%= current_player.email %></h1>
+	<h2>sit y'all monkey ass down. brought to you by Rail <%= Rails.version %></h2>
+</header>
+<section>
+	<p>that's what I thought.</p>
+	<%= link_to "now get the fuck outta here", destroy_player_session_path, method: :delete %>
+</section>
+<body class="container">
+	<p class="notice"><%= notice %></p>
+	<p class="alert"><%= alert %></p>
+
+	<%= yield %>
+</body>
