@@ -42,6 +42,50 @@ CREATE TABLE ar_internal_metadata (
 
 
 --
+-- Name: charactersheets; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE charactersheets (
+    id integer NOT NULL,
+    player_name character varying NOT NULL,
+    character_name character varying NOT NULL,
+    ability_str integer,
+    ability_dex integer,
+    ability_con integer,
+    ability_int integer,
+    ability_wis integer,
+    ability_cha integer,
+    bonus_str integer,
+    bonus_dex integer,
+    bonus_con integer,
+    bonus_int integer,
+    bonus_wis integer,
+    bonus_cha integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: charactersheets_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE charactersheets_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: charactersheets_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE charactersheets_id_seq OWNED BY charactersheets.id;
+
+
+--
 -- Name: players; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -95,6 +139,13 @@ CREATE TABLE schema_migrations (
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY charactersheets ALTER COLUMN id SET DEFAULT nextval('charactersheets_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY players ALTER COLUMN id SET DEFAULT nextval('players_id_seq'::regclass);
 
 
@@ -104,6 +155,14 @@ ALTER TABLE ONLY players ALTER COLUMN id SET DEFAULT nextval('players_id_seq'::r
 
 ALTER TABLE ONLY ar_internal_metadata
     ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
+
+
+--
+-- Name: charactersheets_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY charactersheets
+    ADD CONSTRAINT charactersheets_pkey PRIMARY KEY (id);
 
 
 --
@@ -120,6 +179,20 @@ ALTER TABLE ONLY players
 
 ALTER TABLE ONLY schema_migrations
     ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
+
+
+--
+-- Name: index_charactersheets_on_character_name; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_charactersheets_on_character_name ON charactersheets USING btree (character_name);
+
+
+--
+-- Name: index_charactersheets_on_player_name; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_charactersheets_on_player_name ON charactersheets USING btree (player_name);
 
 
 --
@@ -142,6 +215,6 @@ CREATE UNIQUE INDEX index_players_on_reset_password_token ON players USING btree
 
 SET search_path TO "$user",public;
 
-INSERT INTO schema_migrations (version) VALUES ('20161010144103'), ('20161018015146');
+INSERT INTO schema_migrations (version) VALUES ('20161010144103'), ('20161018015146'), ('20161018024005');
 
 

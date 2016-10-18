@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  player_name: MyString
+  character_name: MyString
+  ability_str: 1
+  ability_dex: 1
+  ability_con: 1
+  ability_int: 1
+  ability_wis: 1
+  ability_cha: 1
+  bonus_str: 1
+  bonus_dex: 1
+  bonus_con: 1
+  bonus_int: 1
+  bonus_wis: 1
+  bonus_cha: 1
+
+two:
+  player_name: MyString
+  character_name: MyString
+  ability_str: 1
+  ability_dex: 1
+  ability_con: 1
+  ability_int: 1
+  ability_wis: 1
+  ability_cha: 1
+  bonus_str: 1
+  bonus_dex: 1
+  bonus_con: 1
+  bonus_int: 1
+  bonus_wis: 1
+  bonus_cha: 1

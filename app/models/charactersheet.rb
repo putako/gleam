@@ -1,0 +1,2 @@
+class Charactersheet < ApplicationRecord
+end

@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 
 gem 'bower-rails'
+gem 'faker'
 # for authentication
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
